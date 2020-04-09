@@ -2,53 +2,25 @@ priority -50
 
 global !p
 def create_table(snip):
-    # retrieving single line from current string and treat it like tabstops count
-    placeholders_string = snip.buffer[snip.line].strip().split("x",1)
-    rows_amount = int(placeholders_string[0])
-    columns_amount = int(placeholders_string[1])
+	# retrieving single line from current string and treat it like tabstops count
+	placeholders_string = snip.buffer[snip.line].strip().split("x",1)
+	rows_amount = int(placeholders_string[0])
+	columns_amount = int(placeholders_string[1])
 
-    # erase current line
-    snip.buffer[snip.line] = ''
+	# erase current line
+	snip.buffer[snip.line] = ''
 
-    # create anonymous snippet with expected content and number of tabstops
-    anon_snippet_title = ' | '.join(['$' + str(col) for col in range(1,columns_amount+1)]) + "\n"
-    anon_snippet_delimiter = ':-|' * (columns_amount-1) + ":-\n"
-    anon_snippet_body = ""
-    for row in range(1,rows_amount+1):
-        anon_snippet_body += ' | '.join(['$' + str(row*columns_amount+col) for col in range(1,columns_amount+1)]) + "\n"
-    anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
+	# create anonymous snippet with expected content and number of tabstops
+	anon_snippet_title = ' | '.join(['$' + str(col) for col in range(1,columns_amount+1)]) + "\n"
+	anon_snippet_delimiter = ':-|' * (columns_amount-1) + ":-\n"
+	anon_snippet_body = ""
+	for row in range(1,rows_amount+1):
+		anon_snippet_body += ' | '.join(['$' + str(row*columns_amount+col) for col in range(1,columns_amount+1)]) + "\n"
+	anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
 
-    # expand anonymous snippet
-    snip.expand_anon(anon_snippet_table)
+	# expand anonymous snippet
+	snip.expand_anon(anon_snippet_table)
 endglobal
-
-###########################
-# Sections and Paragraphs #
-###########################
-snippet sec "Section" b
-# ${1:Section Name} #
-$0
-endsnippet
-
-snippet ssec "Sub Section" b
-## ${1:Section Name} ##
-$0
-endsnippet
-
-snippet sssec "SubSub Section" b
-### ${1:Section Name} ###
-$0
-endsnippet
-
-snippet par "Paragraph" b
-#### ${1:Paragraph Name} ####
-$0
-endsnippet
-
-snippet spar "Paragraph" b
-##### ${1:Paragraph Name} #####
-$0
-endsnippet
 
 ################
 # Common stuff #
@@ -89,4 +61,60 @@ snippet "tb(\d+x\d+)" "Customizable table" br
 `!p snip.rv = match.group(1)`
 endsnippet
 
+########
+# Math #
+########
+snippet align "aligned env" b
+\begin{aligned}
+	${VISUAL}$0
+\end{aligned}
+endsnippet
+
+snippet cases "cases env" b
+\begin{cases}
+	${VISUAL}$0
+\end{cases}
+endsnippet
+
+snippet array "array env" b
+\begin{array}{${1:c}}
+	${VISUAL}$0
+\end{array}
+endsnippet
+
+snippet matrix "matrix env" b
+\begin{matrix}
+	${VISUAL}$0
+\end{matrix}
+endsnippet
+
+snippet pmatrix "pmatrix env" b
+\begin{pmatrix}
+	${VISUAL}$0
+\end{pmatrix}
+endsnippet
+
+snippet bmatrix "bmatrix env" b
+\begin{bmatrix}
+	${VISUAL}$0
+\end{bmatrix}
+endsnippet
+
+snippet Bmatrix "Bmatrix env" b
+\begin{Bmatrix}
+	${VISUAL}$0
+\end{Bmatrix}
+endsnippet
+
+snippet vmatrix "vmatrix env" b
+\begin{vmatrix}
+	${VISUAL}$0
+\end{vmatrix}
+endsnippet
+
+snippet Vmatrix "Vmatrix env" b
+\begin{Vmatrix}
+	${VISUAL}$0
+\end{Vmatrix}
+endsnippet
 # vim:ft=snippets:
