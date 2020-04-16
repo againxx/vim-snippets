@@ -71,8 +71,15 @@ def get_args(arglist):
 
 	return args
 
-def visual_placeholder(snip, default):
-	snip.rv = snip.v.text if snip.v.text else default
+def visual_placeholder(snip, default, indent=0):
+	# snip.rv = snip.v.text if snip.v.text else default
+	snip.rv = ''
+	if snip.v.text:
+		lines = snip.v.text.split('\n')
+		for line in lines:
+			snip.rv += '    ' * indent + line + '\n'
+	else:
+		snip.rv += '    ' * indent + default
 
 def get_quoting_style(snip):
 	style = snip.opt("g:ultisnips_python_quoting_style", "double")
@@ -266,9 +273,9 @@ endsnippet
 
 snippet ifmain "ifmain" b
 if __name__ == `!p snip.rv = get_quoting_style(snip)`__main__`!p snip.rv = get_quoting_style(snip)`:
-	${0:`!p
-	visual_placeholder(snip, "main()")
-	`}
+${0:`!p
+visual_placeholder(snip, "main()", 1)
+`}
 endsnippet
 
 snippet from "from module import name" b
@@ -297,23 +304,23 @@ endsnippet
 
 snippet if "if" b
 if ${1:True}:
-	${0:`!p
-	visual_placeholder(snip, "pass")
-	`}
+${0:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 endsnippet
 
 snippet eif "elif" b
 elif ${1:True}:
-	${0:`!p
-	visual_placeholder(snip, "pass")
-	`}
+${0:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 endsnippet
 
 snippet ife "if / else" b
 if ${1:True}:
-	${2:`!p
-	visual_placeholder(snip, "pass")
-	`}
+${2:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 else:
 	${0:pass}
 endsnippet
@@ -324,9 +331,9 @@ endsnippet
 
 snippet ifee "if / elif / else" b
 if ${1:True}:
-	${2:`!p
-	visual_placeholder(snip, "pass")
-	`}
+${2:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 elif ${3:False}:
 	${4:pass}
 else:
@@ -335,16 +342,16 @@ endsnippet
 
 snippet for "for loop" b
 for ${1:i} in ${2:range}:
-	${0:`!p
-	visual_placeholder(snip, "pass")
-	`}
+${0:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 endsnippet
 
 snippet while "while loop" b
 while ${1:True}:
-	${0:`!p
-	visual_placeholder(snip, "pass")
-	`}
+${0:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 endsnippet
 
 snippet listc "list comprehensions" w
@@ -359,7 +366,9 @@ endsnippet
 
 snippet deff "function without doc"
 def ${1:fname}(`!p snip.rv = "self" if snip.indent else ""`$2):
-	${0:`!p visual_placeholder(snip, "pass")`}
+${0:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 endsnippet
 
 snippet def "function with param doc" b
@@ -370,7 +379,9 @@ def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`${2:arg}):
 	:param $2: (${4:type}) ${5:TODO}
 	:return: (${6:type}) ${7:TODO}
 	`!p snip.rv = triple_quotes(snip)`
-	${0:`!p visual_placeholder(snip, "pass")`}
+${0:`!p
+visual_placeholder(snip, "pass", 1)
+`}
 endsnippet
 
 snippet defc "class method with docstrings" b
@@ -704,14 +715,14 @@ endsnippet
 #################################
 snippet try "Try / Except" b
 try:
-	${1:`!p visual_placeholder(snip, "pass")`}
+${1:`!p visual_placeholder(snip, "pass", 1)`}
 except ${2:Exception} as ${3:e}:
 	${4:raise $3}
 endsnippet
 
 snippet trye "Try / Except / Else" b
 try:
-	${1:`!p visual_placeholder(snip, "pass")`}
+${1:`!p visual_placeholder(snip, "pass", 1)`}
 except ${2:Exception} as ${3:e}:
 	${4:raise $3}
 else:
@@ -720,7 +731,7 @@ endsnippet
 
 snippet tryf "Try / Except / Finally" b
 try:
-	${1:`!p visual_placeholder(snip, "pass")`}
+${1:`!p visual_placeholder(snip, "pass", 1)`}
 except ${2:Exception} as ${3:e}:
 	${4:raise $3}
 finally:
@@ -729,7 +740,7 @@ endsnippet
 
 snippet tryef "Try / Except / Else / Finally" b
 try:
-	${1:`!p visual_placeholder(snip, "pass")`}
+${1:`!p visual_placeholder(snip, "pass", 1)`}
 except${2: ${3:Exception} as ${4:e}}:
 	${5:raise}
 else:
@@ -740,7 +751,7 @@ endsnippet
 
 snippet with "with" b
 with ${1:expr} as ${2:var}:
-	${0:`!p visual_placeholder(snip, "pass")`}
+${0:`!p visual_placeholder(snip, "pass", 1)`}
 endsnippet
 
 
