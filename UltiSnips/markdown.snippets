@@ -175,8 +175,8 @@ snippet smat "smallmatrix env" i
 endsnippet
 
 context "math()"
-snippet ... "ldots" iA
-\ldots 
+snippet ... "cdots" iA
+\cdots 
 endsnippet
 
 context "math()"
@@ -201,12 +201,12 @@ endsnippet
 
 context "math()"
 snippet >= "leq" Ai
-\leq 
+\geq 
 endsnippet
 
 context "math()"
 snippet <= "geq" Ai
-\geq 
+\leq 
 endsnippet
 
 context "math()"
@@ -231,7 +231,7 @@ endsnippet
 
 context "math()"
 snippet sq "\sqrt{}" iA
-\sqrt{${1:${VISUAL}}} $0
+\sqrt{${1:${VISUAL}}}$0
 endsnippet
 
 context "math()"
@@ -309,6 +309,11 @@ while True:
 	i-=1
 snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
+endsnippet
+
+context "math()"
+snippet lrB "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
 
 # vim:ft=snippets:
