@@ -385,7 +385,7 @@ write_docstring_args(args, snip)
 endsnippet
 
 snippet deft "test function" b
-def test_${1:fname}($2):
+def test_${1:fname}(`!p snip.rv = "self" if snip.indent else ""`$2):
 	# Setup
 	$0
 	# Exercise
