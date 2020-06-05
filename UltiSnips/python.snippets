@@ -369,7 +369,7 @@ endsnippet
 
 snippet deff "function without doc"
 def ${1:fname}(`!p snip.rv = "self" if snip.indent else ""`$2):
-	${VISUAL}${0:pass}
+	${3:${VISUAL:pass}}
 endsnippet
 
 snippet def "function with param doc" b
@@ -381,7 +381,7 @@ snip >> 1
 args = get_args(t[2])
 write_docstring_args(args, snip)
 `
-	${VISUAL}${0:pass}
+	${4:${VISUAL:pass}}
 endsnippet
 
 snippet deft "test function" b
@@ -399,18 +399,28 @@ snippet defc "class method with docstrings" b
 @classmethod
 def ${1:fname}(`!p
 if snip.indent:
-	snip.rv = 'cls' + (", " if len(t[2]) else "")`${2:arg1}):
-	`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p
-write_function_docstring(t, snip) `
-	${5:${VISUAL:pass}}
+	snip.rv = 'cls' + (", " if len(t[2]) else "")`${2:arg}):
+	`!p snip.rv = triple_quotes(snip)`
+	${3:TODO}`!p
+snip.rv = ""
+snip >> 1
+args = get_args(t[2])
+write_docstring_args(args, snip)
+`
+	${4:${VISUAL:pass}}
 endsnippet
 
 snippet defs "static method with docstrings" b
 @staticmethod
-def ${1:function}(${2:arg1}):
-	`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p
-write_function_docstring(t, snip) `
-	${5:${VISUAL:pass}}
+def ${1:fname}(${2:arg}):
+	`!p snip.rv = triple_quotes(snip)`
+	${3:TODO}`!p
+snip.rv = ""
+snip >> 1
+args = get_args(t[2])
+write_docstring_args(args, snip)
+`
+	${4:${VISUAL:pass}}
 endsnippet
 
 snippet lambda "lambda statement" w
