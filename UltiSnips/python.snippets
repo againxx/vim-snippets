@@ -387,7 +387,7 @@ endsnippet
 snippet deft "test function" b
 def test_${1:fname}(`!p snip.rv = "self" if snip.indent else ""`$2):
 	# Setup
-	$0
+	${0:pass}
 	# Exercise
 
 	# Verify
@@ -692,7 +692,7 @@ endsnippet
 
 snippet roprop "Read Only Property" b
 @property
-def ${1:pname}(self):
+def ${1:pname}(self)$3:
 	return ${2:self._$1}
 endsnippet
 
