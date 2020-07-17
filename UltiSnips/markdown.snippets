@@ -28,6 +28,7 @@ priority -50
 
 global !p
 texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
+texMathZones += ['VimwikiEqIn']
 texIgnoreMathZones = ['texMathText']
 texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
 texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
@@ -314,6 +315,29 @@ endsnippet
 context "math()"
 snippet lrB "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\}$0
+endsnippet
+
+priority -50
+snippet readpaper "Reading Paper Template" b
+# ${1:Title}
+
+## First Pass: Title / Abstract / Figures
+
+## Second Pass: Introduction / Conclusion / Figures again / Skim the rest
+
+## Third Pass: Read the paper but skip / skim the math
+
+## Fourth Pass: Read the whole thing but skip the parts that don't make sense
+
+## Questions
+### What did the authors try to accomplish?
+
+### What were the key elements of the approach?
+
+### What can you use for yourself?
+
+### What other references do you want to follow?
+
 endsnippet
 
 # vim:ft=snippets:

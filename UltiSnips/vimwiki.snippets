@@ -1,0 +1,52 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+priority -49
+
+extends markdown
+
+snippet paperread "Paper Reading Template" b
+= ${1:Title} =
+:paper_reading:
+
+== First Pass: Title / Abstract / Figures ==
+
+== Second Pass: Introduction / Conclusion / Figures again / Skim the rest ==
+
+== Third Pass: Read the paper but skip / skim the math ==
+
+== Fourth Pass: Read the whole thing but skip the parts that don't make sense ==
+
+== Questions ==
+=== What did the authors try to accomplish? ===
+
+=== What were the key elements of the approach? ===
+
+=== What can you use for yourself? ===
+
+=== What other references do you want to follow? ===
+
+endsnippet
