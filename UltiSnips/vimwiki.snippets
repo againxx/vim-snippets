@@ -29,7 +29,7 @@ priority -49
 extends markdown
 
 snippet paperread "Paper Reading Template" b
-= ${1:Title} =
+= ${1:`!v getline(search("^%title", 'b'))[7:]`} =
 :paper_reading:
 
 == First Pass: Title / Abstract / Figures ==
