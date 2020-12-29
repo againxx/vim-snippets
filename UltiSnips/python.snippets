@@ -295,8 +295,17 @@ snippet imptf "import tensorflow as tf" b
 import tensorflow as tf
 endsnippet
 
+snippet impto "import torch" b
+import torch
+from torch import nn
+endsnippet
+
 snippet impnp "import numpy as np" b
 import numpy as np
+endsnippet
+
+snippet imppd "import pandas as pd" b
+import pandas as pd
 endsnippet
 
 snippet impplt "import matplotlib.pyplot as plt" b
@@ -368,7 +377,7 @@ while ${1:True}:
 endsnippet
 
 snippet lic "list comprehensions" w
-[ ${VISUAL}$0 for ${1:i} in ${2:range}]
+[${VISUAL}$0 for ${1:i} in ${2:range}]
 endsnippet
 
 ############
@@ -693,6 +702,28 @@ snippet npi6 "np.int64" wA
 np.int64
 endsnippet
 
+###########
+# PyTorch #
+###########
+snippet trten "torch.tensor" w
+torch.tensor(${2:${VISUAL}}, dtype=${1:torch.float32})
+endsnippet
+
+snippet trf3 "torch.float32" wA
+torch.float32
+endsnippet
+
+snippet trf6 "torch.float64" wA
+torch.float64
+endsnippet
+
+snippet tri3 "torch.int32" wA
+torch.int32
+endsnippet
+
+snippet tri6 "torch.int64" wA
+torch.int64
+endsnippet
 
 ##############
 # PROPERTIES #
