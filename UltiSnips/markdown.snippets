@@ -28,7 +28,7 @@ priority -50
 
 global !p
 texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
-texMathZones += ['VimwikiEqIn']
+texMathZones += ['VimwikiEqIn', 'textSnipTEX']
 texIgnoreMathZones = ['texMathText']
 texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
 texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
@@ -228,6 +228,27 @@ endsnippet
 context "math()"
 snippet limits "limits" w
 \lim\limits_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+context "math()"
+snippet suma "sum of array" w
+\sum_{${1:i}=1}^{${2:n}} $0
+endsnippet
+
+context "math()"
+snippet proda "prod of array" b
+\prod_{${1:i}=1}^{${2:n}} $0
+endsnippet
+
+context "math()"
+snippet mbb "mathbb" i
+\mathbb{$1}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp|geq|leq|quad|equiv|sup|inf|max|min|arg)' "ln" rwA
+\\`!p snip.rv = match.group(1)`
 endsnippet
 
 context "math()"
