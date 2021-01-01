@@ -76,12 +76,12 @@ snippet uniptr "std::unique_ptr"
 std::unique_ptr<${1:char}> $2($3);
 endsnippet
 
-snippet cout "std::cout << std::endl"
-std::cout << ${VISUAL}$1 << ${2:std::endl};
+snippet cout "std::cout << '\n'"
+std::cout << ${VISUAL}$1 << ${2:'\n'};
 endsnippet
 
 snippet cerr "std::cerr"
-std::cerr << $0 << std::endl;
+std::cerr << $0 << '\n';
 endsnippet
 
 snippet tp "template <typename ..> (template)"
