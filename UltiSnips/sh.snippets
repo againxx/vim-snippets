@@ -96,4 +96,15 @@ while ${2:[[ ${1:condition} ]]}; do
 done
 endsnippet
 
+snippet disw "Disable shellcheck warning" b
+# shellcheck disable=`!p
+ale_errors = vim.eval("ale#engine#GetLoclist(bufnr())")
+current_line = int(vim.eval("line('.')"))
+for error in ale_errors:
+	if current_line <= int(error['lnum']) <= current_line + 1:
+		snip.rv = error['code']
+		break
+`
+endsnippet
+
 # vim:ft=snippets:
