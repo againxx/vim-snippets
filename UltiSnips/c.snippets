@@ -71,21 +71,32 @@ snippet fprintf "fprintf ..."
 fprintf(${1:stderr}, "${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
 
-snippet ifw "if .. (if)"
+snippet if "if {}"
 if (${1:/* condition */})
 {
 	${VISUAL}$0
 }
 endsnippet
 
-snippet el "else .. (el)"
+snippet ifw "if"
+if (${1:/* condition */})
+	${VISUAL}$0
+endsnippet
+
+snippet el "else {}"
 else
 {
 	${VISUAL}$0
 }
 endsnippet
 
-snippet ife "if else .. (ife)"
+snippet elw "else"
+else
+	${VISUAL}$0
+endsnippet
+
+
+snippet ife "if {} else {}"
 if (${1:/* condition */})
 {
 	${VISUAL}$2
@@ -96,7 +107,7 @@ else
 }
 endsnippet
 
-snippet eli "else if .. (eli)"
+snippet eif "else if {}"
 else if (${1:/* condition */})
 {
 	${VISUAL}$0
