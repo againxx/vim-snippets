@@ -40,4 +40,18 @@ snippet compile "export compile_commands.json" b
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endsnippet
 
+snippet pvar "print variable" b
+include(CMakePrintHelpers)
+cmake_print_variables($2${1:_LIBRARIES})
+endsnippet
+
+snippet pprop "print properties" b
+include(CMakePrintHelpers)
+cmake_print_properties(
+	TARGETS ${1:target1}
+	PROPERTIES $0
+)
+endsnippet
+
+
 # vim: set ft=snippets foldmarker={{,}} foldmethod=marker:
