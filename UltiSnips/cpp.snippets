@@ -72,6 +72,46 @@ snippet cerr "std::cerr"
 std::cerr << $0 << '\n';
 endsnippet
 
+snippet rdeb "ROS_DEBUG"
+ROS_DEBUG($0)
+endsnippet
+
+snippet rdebs "ROS_DEBUG_STREAM"
+ROS_DEBUG_STREAM($0)
+endsnippet
+
+snippet rinfo "ROS_INFO"
+ROS_INFO($0)
+endsnippet
+
+snippet rinfos "ROS_INFO_STREAM"
+ROS_INFO_STREAM($0)
+endsnippet
+
+snippet rwarn "ROS_WARN"
+ROS_WARN($0)
+endsnippet
+
+snippet rwarns "ROS_WARN_STREAM"
+ROS_WARN_STREAM($0)
+endsnippet
+
+snippet rerr "ROS_ERROR"
+ROS_ERROR($0)
+endsnippet
+
+snippet rerrs "ROS_ERROR_STREAM"
+ROS_ERROR_STREAM($0)
+endsnippet
+
+snippet rfat "ROS_FATAL"
+ROS_FATAL($0)
+endsnippet
+
+snippet rfats "ROS_FATAL_STREAM"
+ROS_FATAL_STREAM($0)
+endsnippet
+
 snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
 endsnippet
@@ -90,7 +130,7 @@ private:
 	$3
 };
 
-#endif // $2
+#endif  // $2
 endsnippet
 
 snippet incio "#include <iostream>" b
@@ -129,6 +169,10 @@ snippet incmem "#include <memory>" b
 #include <memory>
 endsnippet
 
+snippet incros "#include <ros/ros.h>" b
+#include <ros/ros.h>
+endsnippet
+
 snippet fnc "Basic c++ doxygen function template" b
 /**
 * @brief: ${4:brief}
@@ -145,17 +189,21 @@ endsnippet
 
 snippet try "try {} catch {}" b
 try`!p get_left_curly_brace_style(snip)`
-	$1
+	${VISUAL}
 `!p get_right_curly_brace_style(snip, "catch")` (${2:std::runtime_error err})`!p
 get_left_curly_brace_style(snip)`
 	$0
 }
 endsnippet
 
-snippet forr "range for" b
-for (auto${4:& ${1:i}} : ${2:container})
-{
+snippet forr "range for {}" b
+for (auto${4:& ${1:i}} : ${2:container})`!p get_left_curly_brace_style(snip)`
 	$3
 }
+endsnippet
+
+snippet forrs "range for" b
+for (auto${4:& ${1:i}} : ${2:container})
+	$3
 endsnippet
 # vim:ft=snippets:

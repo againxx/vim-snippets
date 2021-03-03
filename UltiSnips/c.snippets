@@ -70,20 +70,26 @@ snippet fprintf "fprintf ..."
 fprintf(${1:stderr}, "${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
 
+snippet while "while {}"
+while (${1:/* condition */})`!p get_left_curly_brace_style(snip)`
+	${2:${VISUAL}}$0
+}
+endsnippet
+
 snippet if "if {}"
 if (${1:/* condition */})`!p get_left_curly_brace_style(snip)`
-	${VISUAL}$0
+	${2:${VISUAL}}$0
 }
 endsnippet
 
 snippet ifs "if single line"
 if (${1:/* condition */})
-	${VISUAL}$0
+	${2:${VISUAL}}
 endsnippet
 
-snippet el "else {}"
-else`!p get_left_bracket_style(snip)`
-	${VISUAL}$0
+snippet "el(se)?" "else {}" br
+else`!p get_left_curly_brace_style(snip)`
+	${1:${VISUAL}}$0
 }
 endsnippet
 
@@ -118,7 +124,7 @@ struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`}`!p get_left_curly_br
 endsnippet
 
 snippet fun "function" b
-${1:void} ${2:function_name}($3)`!p get_left_bracket_style(snip)`
+${1:void} ${2:function_name}($3)`!p get_left_curly_brace_style(snip)`
 	${VISUAL}$0
 }
 endsnippet
