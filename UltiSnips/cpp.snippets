@@ -39,7 +39,6 @@ snippet cl "class .. (class)"
 class ${1:`!p snip.rv = snip.basename or "name"`}`!p get_left_curly_brace_style(snip)`
 public:
 	${1/(\w+).*/$1/}(${2:arguments});
-	virtual ~${1/(\w+).*/$1/}();
 
 private:
 	${0:/* data */}
@@ -52,16 +51,16 @@ namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}`!p get_left_curl
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
 
-snippet map "std::map (map)"
+snippet map< "std::map (map)"
 std::map<${1:key}, ${2:value}> map$0;
 endsnippet
 
-snippet vector "std::vector (v)"
-std::vector<${1:char}> $0
+snippet vec< "std::vector (v)"
+std::vector<${1:int}> $0
 endsnippet
 
-snippet uniptr "std::unique_ptr"
-std::unique_ptr<${1:char}> $2($3);
+snippet upt< "std::unique_ptr"
+std::unique_ptr<${1:int}> $2($3);
 endsnippet
 
 snippet cout "std::cout << '\n'"
@@ -124,7 +123,6 @@ class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.'
 get_left_curly_brace_style(snip)`
 public:
 	$1();
-	virtual ~$1();
 
 private:
 	$3
@@ -161,6 +159,14 @@ snippet incmap "#include <map>" b
 #include <map>
 endsnippet
 
+snippet incset "#include <set>" b
+#include <set>
+endsnippet
+
+snippet incumap "#include <unordered_map>" b
+#include <unordered_map>
+endsnippet
+
 snippet incexc "#include <stdexcept>" b
 #include <stdexcept>
 endsnippet
@@ -171,6 +177,18 @@ endsnippet
 
 snippet incros "#include <ros/ros.h>" b
 #include <ros/ros.h>
+endsnippet
+
+snippet inctest "#include <gtest/gtest.h>" b
+#include <gtest/gtest.h>
+endsnippet
+
+snippet incmock "#include <gmock/mock.h>" b
+#include <gmock/gmock.h>
+endsnippet
+
+snippet incben "#include <benchmark/benchmark.h>" b
+#include <benchmark/benchmark.h>
 endsnippet
 
 snippet fnc "Basic c++ doxygen function template" b
@@ -197,13 +215,13 @@ get_left_curly_brace_style(snip)`
 endsnippet
 
 snippet forr "range for {}" b
-for (auto${4:& ${1:i}} : ${2:container})`!p get_left_curly_brace_style(snip)`
-	$3
+for (${4/&/const /}auto${4:&} ${1:i} : ${2:container})`!p get_left_curly_brace_style(snip)`
+	${3:${VISUAL}}$0
 }
 endsnippet
 
-snippet forrs "range for" b
-for (auto${4:& ${1:i}} : ${2:container})
+snippet forr1 "range for" b
+for (auto${4:&} ${1:i} : ${2:container})
 	$3
 endsnippet
 # vim:ft=snippets:

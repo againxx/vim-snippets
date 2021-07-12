@@ -37,10 +37,21 @@ ${1:#pragma mark -
 $0
 endsnippet
 
-snippet main "main() (main)"
-int main(${2:int argc, char *argv[]})`!p get_left_curly_brace_style(snip)`
+snippet "int\s+main\(" "int argc, char* argv[]" bri
+int main(int argc, char* argv[]
+endsnippet
+
+snippet main "main()"
+int main($2)`!p get_left_curly_brace_style(snip)`
 	${1:${VISUAL}}$0
 	return 0;
+}
+endsnippet
+
+snippet tmain "gtest main()"
+int main(int argc, char* argv[])`!p get_left_curly_brace_style(snip)`
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }
 endsnippet
 
@@ -50,7 +61,7 @@ for (${5:std::size_t} ${1:i} = 0; $1 < ${2:count}; ${3:++$1})`!p get_left_curly_
 }
 endsnippet
 
-snippet once "Include header once only guard"
+snippet guard "Include header once only guard"
 #ifndef ${1:`!p
 if not snip.c:
 	import random, string
@@ -63,7 +74,7 @@ else:
 
 ${VISUAL}$0
 
-#endif /* end of include guard: $1 */
+#endif  // $1
 endsnippet
 
 snippet fprintf "fprintf ..."
@@ -131,6 +142,10 @@ endsnippet
 
 snippet fund "function declaration" b
 ${1:void} ${2:function_name}($3);
+endsnippet
+
+snippet incio "#include <stdio.h>" b
+#include <stdio.h>
 endsnippet
 
 # vim:ft=snippets:

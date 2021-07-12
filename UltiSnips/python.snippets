@@ -683,7 +683,7 @@ endsnippet
 #########
 
 snippet nparr "np.array" w
-np.array(${2:${VISUAL}}, dtype=${1:np.float32})
+np.array(${2:${VISUAL}}${3:, dtype=np.${1:float32}})
 endsnippet
 
 snippet npf3 "np.float32" wA
@@ -752,8 +752,8 @@ endsnippet
 snippet try "Try / Except" b
 try:
 	${VISUAL}$1
-except ${2:Exception} as ${3:e}:
-	${4:raise $3}
+except ${2:Exception}${3: as ${4:e}}:
+	pass
 endsnippet
 
 snippet trye "Try / Except / Else" b
