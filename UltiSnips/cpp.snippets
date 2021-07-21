@@ -11,6 +11,7 @@ priority -49
 global !p
 
 from c_snippets import (get_left_curly_brace_style, get_right_curly_brace_style)
+from cpp_snippets import remove_redundant_pairs
 
 def write_docstring_args(arglist, snip):
 	args = str(arglist).split(',')
@@ -51,16 +52,27 @@ namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}`!p get_left_curl
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
 
-snippet map< "std::map (map)"
-std::map<${1:key}, ${2:value}> map$0;
+snippet map< "std::map" w
+std::map<${1:key}, ${2:value}> $0
 endsnippet
 
-snippet vec< "std::vector (v)"
+snippet vec< "std::vector" w
 std::vector<${1:int}> $0
 endsnippet
 
-snippet upt< "std::unique_ptr"
-std::unique_ptr<${1:int}> $2($3);
+post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
+snippet uptr< "std::unique_ptr" w
+std::unique_ptr<${1:int}>
+endsnippet
+
+post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
+snippet sptr< "std::shared_ptr" w
+std::shared_ptr<${1:int}>
+endsnippet
+
+post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
+snippet wptr< "std::weak_ptr" w
+std::weak_ptr<${1:int}>
 endsnippet
 
 snippet cout "std::cout << '\n'"
