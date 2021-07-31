@@ -19,14 +19,17 @@ def remove_redundant_pairs(snip, candidate_pairs, *,
     end_column_no = snip.snippet_end[1] + end_column_offset
     for line_no in range(start_line_no, end_line_no + 1):
         line = snip.buffer[line_no]
+        start_pos = 0
+        end_pos = -1
         line_prefix = ''
         line_suffix = ''
         if line_no == start_line_no:
             line_prefix = line[:start_column_no]
-            line = line[start_column_no:]
-        if line_no == end_line_no and len(line) > end_column_no + 1:
-            line_suffix = line[end_column_no + 1:]
-            line = line[:end_column_no + 1]
+            start_pos = start_column_no
+        if line_no == end_line_no and len(line) > end_column_no:
+            line_suffix = line[end_column_no:]
+            end_pos = end_column_no
+        line = line[start_pos:end_pos]
 
         new_line_chars = []
         for char in line:

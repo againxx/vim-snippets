@@ -52,12 +52,14 @@ namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}`!p get_left_curl
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
 
+post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
 snippet map< "std::map" w
 std::map<${1:key}, ${2:value}> $0
 endsnippet
 
+post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
 snippet vec< "std::vector" w
-std::vector<${1:int}> $0
+std::vector<${1:int}>
 endsnippet
 
 post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
