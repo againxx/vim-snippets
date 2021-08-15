@@ -125,6 +125,12 @@ snippet rfats "ROS_FATAL_STREAM"
 ROS_FATAL_STREAM($0)
 endsnippet
 
+snippet "eg([mv])([234x])([ifd])" "Eigen::Vector2d" wrA
+Eigen::`!p
+snip.rv = "Matrix" if match.group(1) == "m" else "Vector"
+snip.rv += match.group(2).upper() + match.group(3)`
+endsnippet
+
 snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
 endsnippet
