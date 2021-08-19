@@ -886,11 +886,13 @@ endsnippet
 
 snippet disw "Disable pylint warning" w
 # pylint: disable=`!p
-ale_errors = vim.eval("ale#engine#GetLoclist(bufnr())")
+coc_diagnostics = vim.eval("CocAction('diagnosticList')")
 current_line = int(vim.eval("line('.')"))
-for error in ale_errors:
-	if current_line <= int(error['lnum']) <= current_line + 1:
-		snip.rv = error['code']
+current_file_path = vim.eval("expand('%:p')")
+for diagnositic in coc_diagnostics:
+	if (diagnositic['file'] == current_file_path and current_line <= int(diagnositic['lnum']) <= current_line + 1
+		and diagnositic['source'] == 'pylint'):
+		snip.rv = re.search(r'(?<=\()[-\w]+(?=\)$)', diagnositic['message']).group()
 		break
 `
 endsnippet
