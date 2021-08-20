@@ -63,6 +63,11 @@ std::vector<${1:int}>
 endsnippet
 
 post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
+snippet set< "std::set" w
+std::set<${1:key}>
+endsnippet
+
+post_expand "remove_redundant_pairs(snip, '<', end_column_offset=1)"
 snippet uptr< "std::unique_ptr" w
 std::unique_ptr<${1:int}>
 endsnippet
