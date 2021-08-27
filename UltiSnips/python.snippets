@@ -396,7 +396,7 @@ endsnippet
 
 snippet def "function with param doc" b
 def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`${2:arg}):
-	`!p snip.rv = triple_quotes(snip)`
+	`!p snip.rv = ("r" if get_style(snip) == SPHINX else "") + triple_quotes(snip)`
 	${3:TODO}`!p
 snip.rv = ""
 snip >> 1
@@ -456,7 +456,7 @@ endsnippet
 
 snippet class "class with docstrings" b
 class ${1:cname}$2:
-	`!p snip.rv = triple_quotes(snip)`
+	`!p snip.rv = ("r" if get_style(snip) == SPHINX else "") + triple_quotes(snip)`
 	${3:TODO}`!p
 snip.rv = ""
 snip >> 1
@@ -873,11 +873,11 @@ $0
 endsnippet
 
 snippet pdoc "param docstring" b
-:param ${1:arg}: (${2:type}) ${0:TODO}
+:param ${1:arg}: ${0:TODO}
 endsnippet
 
 snippet rdoc "return docstring" b
-:return: (${1:type}) ${0:TODO}
+:return: ${0:TODO}
 endsnippet
 
 ##############
